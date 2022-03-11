@@ -8,7 +8,7 @@ import java.time.LocalDate;
 public class Pet {
     @Getter
     @Setter
-    private  PetType petType;
+    private PetType petType;
     @Getter
     @Setter
     private Owner owner;
