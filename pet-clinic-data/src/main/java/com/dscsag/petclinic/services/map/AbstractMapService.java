@@ -1,7 +1,6 @@
 package com.dscsag.petclinic.services.map;
 
 import com.dscsag.petclinic.model.BaseEntity;
-import com.dscsag.petclinic.model.Owner;
 import com.dscsag.petclinic.services.CrudService;
 
 import java.util.HashMap;
