@@ -3,7 +3,7 @@ package com.dscsag.petclinic.model;
 import lombok.Getter;
 import lombok.Setter;
 
-public class Person extends BaseEntity{
+public class Person extends BaseEntity<Long>{
     @Getter
     @Setter
     private String firstName;

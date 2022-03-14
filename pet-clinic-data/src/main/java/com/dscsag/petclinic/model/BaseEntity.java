@@ -5,9 +5,9 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
-public class BaseEntity implements Serializable {
+public class BaseEntity<ID> implements Serializable {
     //Long instead of long (Hibernate recommendation)
     @Getter
     @Setter
-    private Long id;
+    private ID id;
 }

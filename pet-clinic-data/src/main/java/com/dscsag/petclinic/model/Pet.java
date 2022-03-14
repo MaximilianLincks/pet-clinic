@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
-public class Pet extends BaseEntity{
+public class Pet extends BaseEntity<Long>{
     @Getter
     @Setter
     private PetType petType;
