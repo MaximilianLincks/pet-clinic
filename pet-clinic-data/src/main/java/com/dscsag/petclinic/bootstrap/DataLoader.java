@@ -4,8 +4,6 @@ import com.dscsag.petclinic.model.Owner;
 import com.dscsag.petclinic.model.Vet;
 import com.dscsag.petclinic.services.OwnerService;
 import com.dscsag.petclinic.services.VetService;
-import com.dscsag.petclinic.services.map.OwnerMapService;
-import com.dscsag.petclinic.services.map.VetMapService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
