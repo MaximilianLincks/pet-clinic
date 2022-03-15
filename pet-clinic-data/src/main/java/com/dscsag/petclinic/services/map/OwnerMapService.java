@@ -3,7 +3,6 @@ package com.dscsag.petclinic.services.map;
 import com.dscsag.petclinic.model.Owner;
 import com.dscsag.petclinic.services.OwnerService;
 import com.dscsag.petclinic.services.PetService;
-import com.dscsag.petclinic.services.PetTypeService;
 import org.springframework.stereotype.Service;
 
 @Service
