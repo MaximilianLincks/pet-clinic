@@ -3,10 +3,9 @@ package com.dscsag.petclinic.model;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.Set;
+public class Specialty extends  BaseEntity{
 
-public class Vet extends Person{
     @Getter
     @Setter
-    private Set<Specialty> specialties;
+    private String description;
 }
