@@ -5,9 +5,10 @@ import lombok.Setter;
 
 import java.io.Serializable;
 
+@Getter
+@Setter
 public class BaseEntity implements Serializable {
     //Long instead of long (Hibernate recommendation)
-    @Getter
-    @Setter
+
     private Long id;
 }

@@ -5,14 +5,11 @@ import lombok.Setter;
 
 import java.time.LocalDate;
 
+@Getter
+@Setter
 public class Visit extends BaseEntity{
-    @Getter
-    @Setter
+
     private LocalDate date;
-    @Getter
-    @Setter
     private String description;
-    @Getter
-    @Setter
     private Pet pet;
 }

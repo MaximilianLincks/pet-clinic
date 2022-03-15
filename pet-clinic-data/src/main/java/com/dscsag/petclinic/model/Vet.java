@@ -5,8 +5,9 @@ import lombok.Setter;
 
 import java.util.Set;
 
+@Getter
+@Setter
 public class Vet extends Person{
-    @Getter
-    @Setter
+
     private Set<Specialty> specialties;
 }
