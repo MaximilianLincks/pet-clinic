@@ -33,7 +33,6 @@ public class DataLoader implements CommandLineRunner {
             loadOwnersAndPets();
             loadVets();
         }
-
     }
 
     private void loadOwnersAndPets() {
