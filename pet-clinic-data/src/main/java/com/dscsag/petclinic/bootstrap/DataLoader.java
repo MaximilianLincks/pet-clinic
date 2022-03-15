@@ -1,6 +1,7 @@
 package com.dscsag.petclinic.bootstrap;
 
 import com.dscsag.petclinic.model.Owner;
+import com.dscsag.petclinic.model.Pet;
 import com.dscsag.petclinic.model.PetType;
 import com.dscsag.petclinic.model.Vet;
 import com.dscsag.petclinic.services.OwnerService;
@@ -8,6 +9,8 @@ import com.dscsag.petclinic.services.PetTypeService;
 import com.dscsag.petclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 //when context is created alle CommandLineRunner Beans are executed
 @Component
@@ -41,13 +44,32 @@ public class DataLoader implements CommandLineRunner {
         Owner owner1 = new Owner();
         owner1.setFirstName("Michael");
         owner1.setLastName("Weston");
+        owner1.setAddress("123 Brickelel ");
+        owner1.setCity("Miami");
+        owner1.setTelephone("348293427399");
+
+        Pet mikesCat = new Pet();
+        mikesCat.setPetType(cat);
+        mikesCat.setOwner(owner1);
+        mikesCat.setName("Rasputin");
+        mikesCat.setBirthDate(LocalDate.now().minusYears(2));
+        owner1.getPets().add(mikesCat);
 
         ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         owner2.setFirstName("Fiona");
         owner2.setLastName("Gleanne");
+        owner2.setAddress("123 Brickelel ");
+        owner2.setCity("Miami");
+        owner2.setTelephone("348293427399");
 
+        Pet fionasDog = new Pet();
+        fionasDog.setName("Thomas");
+        fionasDog.setBirthDate(LocalDate.now().minusMonths(7));
+        fionasDog.setPetType(dog);
+        fionasDog.setOwner(owner2);
+        owner2.getPets().add(fionasDog);
         ownerService.save(owner2);
 
         System.out.println("Loaded owners");
