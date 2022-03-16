@@ -1,8 +1,7 @@
 package com.dscsag.petclinic.model;
 
-
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -10,6 +9,9 @@ import java.util.Set;
 
 @Getter
 @Setter
+@SuperBuilder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "owners")
 public class Owner extends Person{
@@ -25,4 +27,5 @@ public class Owner extends Person{
 
     @Column(name ="telephone")
     private String telephone;
+
 }
