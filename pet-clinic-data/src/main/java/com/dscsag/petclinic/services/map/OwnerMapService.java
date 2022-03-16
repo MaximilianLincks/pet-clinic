@@ -3,9 +3,11 @@ package com.dscsag.petclinic.services.map;
 import com.dscsag.petclinic.model.Owner;
 import com.dscsag.petclinic.services.OwnerService;
 import com.dscsag.petclinic.services.PetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
+@Profile("map")
 public class OwnerMapService extends AbstractMapService<Owner, Long> implements OwnerService {
 
     private final PetService petService;
@@ -25,12 +27,4 @@ public class OwnerMapService extends AbstractMapService<Owner, Long> implements 
         return super.save(owner);
     }
 
-    @Override
-    public Owner findByLastName(String lastName) {
-        return findAll().
-                stream().
-                filter(owner -> owner.getLastName().equals(lastName)).
-                findFirst().
-                orElse(null);
-    }
 }

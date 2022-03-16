@@ -3,9 +3,11 @@ package com.dscsag.petclinic.services.map;
 import com.dscsag.petclinic.model.Vet;
 import com.dscsag.petclinic.services.SpecialtyService;
 import com.dscsag.petclinic.services.VetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
+@Profile("map")
 public class VetMapService extends AbstractMapService<Vet,Long> implements VetService {
 
     private final SpecialtyService specialtyService;

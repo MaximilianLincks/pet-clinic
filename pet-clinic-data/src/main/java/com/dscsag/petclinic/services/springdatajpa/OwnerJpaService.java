@@ -8,15 +8,11 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
-@Profile("springdatajpa")
+@Profile({"jpa","default"})
 public class OwnerJpaService extends AbstractJpaService<Owner,Long, OwnerRepo> implements OwnerService {
 
     public OwnerJpaService(OwnerRepo ownerRepo) {
         super(ownerRepo);
     }
 
-    @Override
-    public Owner findByLastName(String lastName) {
-        return findAll().stream().filter(owner -> owner.getLastName().equals(lastName)).findFirst().orElse(null);
-    }
 }

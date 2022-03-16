@@ -3,9 +3,11 @@ package com.dscsag.petclinic.services.map;
 import com.dscsag.petclinic.model.Pet;
 import com.dscsag.petclinic.services.PetService;
 import com.dscsag.petclinic.services.PetTypeService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 @Service
+@Profile("map")
 public class PetMapService extends AbstractMapService<Pet, Long> implements PetService {
     private final PetTypeService petTypeService;
 
