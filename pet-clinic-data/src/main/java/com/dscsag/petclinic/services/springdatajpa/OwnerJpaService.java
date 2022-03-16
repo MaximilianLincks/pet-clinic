@@ -1,7 +1,7 @@
 package com.dscsag.petclinic.services.springdatajpa;
 
 import com.dscsag.petclinic.model.Owner;
-import com.dscsag.petclinic.services.springdatajpa.repos.OwnerRepo;
+import com.dscsag.petclinic.repos.OwnerRepo;
 import com.dscsag.petclinic.services.OwnerService;
 
 import org.springframework.context.annotation.Profile;

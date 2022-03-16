@@ -1,4 +1,4 @@
-package com.dscsag.petclinic.services.springdatajpa.repos;
+package com.dscsag.petclinic.repos;
 
 import com.dscsag.petclinic.model.Pet;
 import org.springframework.data.repository.CrudRepository;
