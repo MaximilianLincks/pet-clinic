@@ -1,10 +1,8 @@
 package com.dscsag.petclinic.bootstrap;
 
 import com.dscsag.petclinic.model.*;
-import com.dscsag.petclinic.services.OwnerService;
-import com.dscsag.petclinic.services.PetTypeService;
-import com.dscsag.petclinic.services.SpecialtyService;
-import com.dscsag.petclinic.services.VetService;
+import com.dscsag.petclinic.services.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,19 +10,15 @@ import java.time.LocalDate;
 
 //when context is created alle CommandLineRunner Beans are executed
 @Component
+@RequiredArgsConstructor
 public class DataLoader implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final VetService vetService;
     private final PetTypeService petTypeService;
     private final SpecialtyService specialtiesService;
+    private final VisitService visitService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, SpecialtyService specialtyService) {
-        this.ownerService = ownerService;
-        this.vetService = vetService;
-        this.petTypeService = petTypeService;
-        this.specialtiesService = specialtyService;
-    }
 
     @Override
     public void run(String... args) throws Exception {
@@ -80,6 +74,11 @@ public class DataLoader implements CommandLineRunner {
         ownerService.save(owner2);
 
         System.out.println("Loaded owners");
+
+        Visit catVisit = new Visit();
+        catVisit.setPet(mikesCat);
+        catVisit.setDate(LocalDate.now().plusDays(4));
+        catVisit.setDescription("Sneezy Kitty");
     }
 
     private void loadVets() {

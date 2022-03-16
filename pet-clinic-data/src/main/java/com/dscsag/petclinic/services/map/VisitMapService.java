@@ -4,8 +4,12 @@ import com.dscsag.petclinic.model.Visit;
 import com.dscsag.petclinic.services.OwnerService;
 import com.dscsag.petclinic.services.VisitService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Service;
 
 @RequiredArgsConstructor
+@Service
+@Profile("map")
 public class VisitMapService extends AbstractMapService<Visit,Long> implements VisitService {
 
     private final OwnerService ownerService;
