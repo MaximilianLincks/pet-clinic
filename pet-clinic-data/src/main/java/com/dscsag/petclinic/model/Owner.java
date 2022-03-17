@@ -17,6 +17,7 @@ import java.util.Set;
 public class Owner extends Person{
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
+    @Builder.Default
     private Set<Pet> pets = new HashSet<>();
 
     @Column(name = "address")

@@ -27,6 +27,7 @@ public class Pet extends BaseEntity{
 
     //i dont think you should cascade here
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    @Builder.Default
     private Set<Visit> visits = new HashSet<>();
 
     @Column(name = "birth_date")

@@ -21,7 +21,8 @@ public abstract class AbstractMapService <T extends BaseEntity, ID extends Long>
         if(t.getId() == null){
             t.setId(getNextId());
         }
-        return map.put(t.getId(),t);
+        map.put(t.getId(),t);
+        return t;
     }
 
     public void deleteById(ID id){
