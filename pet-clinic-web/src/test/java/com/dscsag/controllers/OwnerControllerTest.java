@@ -2,31 +2,24 @@ package com.dscsag.controllers;
 
 import com.dscsag.petclinic.model.Owner;
 import com.dscsag.petclinic.services.OwnerService;
-import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ArgumentsSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.util.StreamUtils;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -81,7 +74,7 @@ class OwnerControllerTest {
     @ParameterizedTest
     @ValueSource(ints = {0,1,2})
     void findFormReturnOwners(int amount) throws Exception {
-        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(owners.stream().limit(amount).collect(Collectors.toList()));
+        when(ownerService.findAllByLastNameContaining(anyString())).thenReturn(owners.stream().limit(amount).collect(Collectors.toList()));
 
         ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/owners"));
         if(amount < 1){

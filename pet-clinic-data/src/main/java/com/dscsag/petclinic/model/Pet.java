@@ -36,5 +36,8 @@ public class Pet extends BaseEntity{
     @Column(name = "name")
     private String name;
 
-
+    @Override
+    public String toString() {
+        return String.format("%s: %s",name,petType.getName());
+    }
 }

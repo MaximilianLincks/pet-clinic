@@ -16,9 +16,9 @@ public interface OwnerService extends CrudService<Owner,Long>{
                 orElse(null);
     }
 
-    default List<Owner> findAllByLastNameLike(String lastName) {
+    default List<Owner> findAllByLastNameContaining(String lastName) {
         return findAll().stream()
-                .filter(owner -> owner.getLastName().equals(lastName))
+                .filter(owner -> owner.getLastName().contains(lastName))
                 .collect(Collectors.toList());
     }
 
