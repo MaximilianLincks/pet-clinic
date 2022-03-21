@@ -13,17 +13,21 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.ResultMatcher;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.util.StreamUtils;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.isNotNull;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -52,24 +56,15 @@ class OwnerControllerTest {
 
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = {"","/index"})
-    void listOwners(String path) throws Exception {
-        when(ownerService.findAll()).then(invocationOnMock -> owners);
 
-        path = "/owners" + path;
-
-        mockMvc.perform(get(path)).
-                andExpect(status().isOk()).
-                andExpect(view().name("owners/index")).
-                andExpect(model().attribute("owners", hasSize(2)));
-    }
 
     @Test
     void findOwner() throws Exception {
-        mockMvc.perform(get("/owners/find")).
-                andExpect(status().isOk()).
-                andExpect(view().name("notimplemented"));
+        mockMvc.perform(get("/owners/find"))
+        .andExpect(status().isOk())
+                .andExpect(view().name("owners/findOwners"))
+                .andExpect(model().attributeExists("owner"));
+
     }
 
     @Test
@@ -81,5 +76,27 @@ class OwnerControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("owners/ownerDetails"))
                 .andExpect(model().attribute("owner", hasProperty("id",is(1L))));
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = {0,1,2})
+    void findFormReturnOwners(int amount) throws Exception {
+        when(ownerService.findAllByLastNameLike(anyString())).thenReturn(owners.stream().limit(amount).collect(Collectors.toList()));
+
+        ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get("/owners"));
+        if(amount < 1){
+            result
+                    .andExpect(status().isOk())
+                    .andExpect(view().name("owners/findOwners"));
+        }else if(amount == 1){
+            result
+                    .andExpect(status().is3xxRedirection())
+                    .andExpect(view().name(containsString("redirect:/owners/")));
+        }else{
+            result
+                    .andExpect(status().isOk())
+                    .andExpect(model().attributeExists("selections"))
+                    .andExpect(view().name("owners/ownersList"));
+        }
     }
 }
