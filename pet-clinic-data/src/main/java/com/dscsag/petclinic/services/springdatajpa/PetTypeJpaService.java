@@ -13,4 +13,9 @@ public class PetTypeJpaService extends AbstractJpaService<PetType,Long, PetTypeR
     public PetTypeJpaService(PetTypeRepo petTypeRepo) {
         super(petTypeRepo);
     }
+
+    @Override
+    public PetType findByName(String name) {
+        return repo.findByNameIgnoreCase(name);
+    }
 }

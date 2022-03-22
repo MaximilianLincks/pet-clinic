@@ -76,6 +76,7 @@ public class PetController {
     public String processUpdateForm(@Valid Pet pet,Owner owner,BindingResult result, Model model){
         if(result.hasErrors()){
             pet.setOwner(owner);
+            owner.getPets().add(pet);
             model.addAttribute(pet);
             return "pets/createOrUpdatePetForm";
         }else {
