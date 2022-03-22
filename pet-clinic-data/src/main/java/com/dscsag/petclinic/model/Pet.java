@@ -38,6 +38,6 @@ public class Pet extends BaseEntity{
 
     @Override
     public String toString() {
-        return String.format("%s: %s",name,petType.getName());
+        return String.format("%s: %s",name,petType == null ? "" : petType.getName());
     }
 }

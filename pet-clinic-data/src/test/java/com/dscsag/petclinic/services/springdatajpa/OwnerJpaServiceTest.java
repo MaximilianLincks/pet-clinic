@@ -8,15 +8,18 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.context.annotation.Profile;
 
 
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
+@Profile("jpa")
 class OwnerJpaServiceTest {
 
     @Mock
@@ -47,8 +50,8 @@ class OwnerJpaServiceTest {
 
     @Test
     void findByLastName() {
-        when(repo.findAll()).then(invocationOnMock -> owners);
+        when(repo.findByLastName(anyString())).thenReturn(doomGuy);
 
-        assertEquals(doomGuy,ownerService.findByLastName(lastName));
+        assertEquals(doomGuy.getId(),ownerService.findByLastName(lastName).getId());
     }
 }
