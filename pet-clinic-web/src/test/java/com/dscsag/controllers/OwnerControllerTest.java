@@ -15,7 +15,9 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -89,7 +91,19 @@ class OwnerControllerTest {
             result
                     .andExpect(status().isOk())
                     .andExpect(model().attributeExists("selections"))
-                    .andExpect(view().name("owners/ownersList"));
+                    .andExpect(view().name("/owners/ownersList"));
         }
     }
+
+    @Test
+    void findAllOnEmpty() throws Exception {
+        when(ownerService.findAllByLastNameContaining(anyString())).thenReturn(new ArrayList<>(owners));
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/owners"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("/owners/ownersList"));
+
+
+    }
+
 }

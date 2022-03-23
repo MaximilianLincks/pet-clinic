@@ -78,9 +78,9 @@ class OwnerMapServiceTest {
     void findByLastName() {
         String lastName = "Smith";
         Owner owner = ownerMapService.save(Owner.builder().lastName(lastName).build());
-
         assertEquals(lastName,ownerMapService.findByLastName(lastName).getLastName());
     }
+
 
 
 }
